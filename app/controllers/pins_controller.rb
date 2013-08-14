@@ -3,7 +3,7 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all
+    @pins = Pin.order("created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +24,7 @@ class PinsController < ApplicationController
 
   # GET /pins/new
   # GET /pins/new.json
-  def new
+ def new
     @pin = current_user.pins.new
 
     respond_to do |format|
@@ -34,13 +34,13 @@ class PinsController < ApplicationController
   end
 
   # GET /pins/1/edit
-  def edit
+   def edit
     @pin = current_user.pins.find(params[:id])
   end
 
   # POST /pins
   # POST /pins.json
-  def create
+ def create
     @pin = current_user.pins.new(params[:pin])
 
     respond_to do |format|
